@@ -4,7 +4,7 @@ import * as admin from 'firebase-admin';
 admin.initializeApp();
 
 exports.imageToData = functions.storage.object().onFinalize((object) => {
-  const bucketName = process.env.bucketName || '';
+  const bucketName = functions.config().bucket.name || '';
   const filePath = object.name || '';
   const db = admin.firestore();
 
